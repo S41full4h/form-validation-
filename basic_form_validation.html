@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- //Adding CDN Links of Bootstrap 4 -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>Form</title>
+</head>
+<body><br>
+    <h1 class="text-success text-center">Validate Form</h1><br>
+    <div class="col-lg-6 m-auto d-block">
+        <div>
+            <form action="#"  onsubmit="return validateForm()" class="bg-light ">
+                <div class="form-group"> 
+                    <label>Username: </label><span class="text-danger font-weight-bold">*</span>
+                    <input type="text" name="user" id="user" class="form-control" autocomplete="off">
+                    <span class="text-danger font-weight-bold" id="username"></span>
+                </div>
+
+                <!-- password -->
+
+                <div class="form-group"> 
+                    <label>Password: </label><span class="text-danger font-weight-bold">*</span>
+                    <input type="password" name="password" id="password" class="form-control" autocomplete="off">
+                    <span class="text-danger font-weight-bold" id="pass"></span>
+                </div>
+
+                <!-- Confirm Password -->
+
+                <div class="form-group"> 
+                    <label>Confirm Password: </label><span class="text-danger font-weight-bold">*</span>
+                    <input type="password" name="confirmpass" id="confirmpass" class="form-control" autocomplete="off">
+                    <span class="text-danger font-weight-bold" id="confirm"></span>
+                </div>
+
+                <!-- Mobile Number -->
+                
+                <div class="form-group"> 
+                    <label>Contact Number: </label><span class="text-danger font-weight-bold">*</span>
+                    <input type="text" name="contactnumber" id="contactnumber" class="form-control" autocomplete="off">
+                    <span class="text-danger font-weight-bold" id="contact"></span>
+                </div>
+
+                <!-- Email id -->
+
+                <div class="form-group"> 
+                    <label>Email: </label><span class="text-danger font-weight-bold">*</span>
+                    <input type="text" name="email" id="email" class="form-control" autocomplete="off">
+                    <span class="text-danger font-weight-bold" id="emails"></span><br><br>
+
+                    <!-- Submit Button -->
+                    <input type="Submit" name="submit" id="submit" class="btn btn-success">
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        function validateForm(){
+            var user = document.getElementById("user").value;
+            var password = document.getElementById("password").value;
+            var confirmpassword = document.getElementById("confirmpass").value;
+            var mobnumber = document.getElementById("contactnumber").value;
+            var email = document.getElementById("email").value;
+
+            // Check Statment for user name is not empty
+
+            if (user === "") {
+                document.getElementById("username").innerHTML = "** Please Fill The Username's Field.";
+                return false;
+            }
+            //Checking for the length of user name
+            if ((user.length <= 2) || (user.length >= 40)){
+                document.getElementById("username").innerHTML = " ** Username Must Be Greater Than 2 And Less Than 40 Characters.";
+                return false;
+            }
+            //Checking for input ia not a number
+            if (!isNaN(user)){
+                document.getElementById("username").innerHTML = " ** Just Characters Are Allowd Here.";
+                return false;
+            }
+
+
+
+
+
+
+            // Check Statment for password is not empty
+
+            if (password === "") {
+                document.getElementById("pass").innerHTML = "** Please Fill The Password's Field.";
+                return false;
+            }
+            //Checking for Password's Length
+            if ((password.length <=7) || (password.length >=30)){
+                document.getElementById("pass").innerHTML = " ** Password Should Be Grater Than 8 And Less Than 30 Characters";
+                return false;
+            }
+
+
+
+            //Checking For Passwords Matching
+            if (password != confirmpassword){
+                document.getElementById("confirm").innerHTML = "Passwords Is Not Matching";
+                return false;
+            }
+
+             // Check Statment for confirmpassword is not empty
+            
+             if (confirmpassword === "") {
+                document.getElementById("confirm").innerHTML = "** Please Fill The Confirm Password's Field.";
+                return false;
+            }
+
+
+
+
+            // Check Statment for Contact number is not empty
+            
+            if (mobnumber === "") {
+                document.getElementById("contact").innerHTML = "** Please Fill The Contact's Number Field.";
+                return false;
+            }
+            //Checking For contact number's Length
+            if (mobnumber.length !=11){
+                document.getElementById("contact").innerHTML = " ** Your Contact's Number Must Be 11 Digits.";
+                return false;
+            }
+            //Checking for inputing digits
+            if (isNaN(mobnumber)){
+                document.getElementById("contact").innerHTML = " ** Only Digits Are Allowd";
+                return false;
+            }
+
+
+            
+            
+
+            // Check Statment for email is not empty
+            
+            if (email === "") {
+                document.getElementById("emails").innerHTML = "** Please Fill The Email's Field.";
+                return false;
+            }
+            //Checking For @ Position
+            if (email.indexOf('@') <= 0){
+                document.getElementById("emails").innerHTML = " ** The Position Of '@' Is Not Valid.";
+                return false;
+            }
+            //cgecking for the " . " position
+            if ((email.charAt(email.length-4)!= '.' && (email.charAt(email.length-3)!= '.'))){
+                document.getElementById("emails").innerHTML = " ** The Position of '.' Is Not Valid";
+                return false;
+            }
+
+        }
+    </script>
+</body>
+</html>
